@@ -1,5 +1,5 @@
 # cocos2d-x-particleAnim
-sprite sheet animation for particle of cocos2d-x
+sprite sheet animation for particle of cocos2d-x 3.5
 
 ```
 	auto *particle = UVAnimParticleQuadSystem::create("particle_texture.plist");
