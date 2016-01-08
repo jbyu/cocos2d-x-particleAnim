@@ -50,7 +50,7 @@ namespace cocos2d {
 
 	    virtual void updateQuadWithParticle(tParticle* particle, const Vec2& newPosition) override;
 
-	    static UVAnimParticleQuadSystem* create(const char* filename);
+	    static UVAnimParticleQuadSystem* create(const std::string& filename);
     };
     
 }// namespace cocos2d

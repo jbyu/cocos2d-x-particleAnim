@@ -15,7 +15,7 @@ UVAnimParticleQuadSystem::~UVAnimParticleQuadSystem() {
 	freeResources();
 }
 
-UVAnimParticleQuadSystem* UVAnimParticleQuadSystem::create(const char* filename)
+UVAnimParticleQuadSystem* UVAnimParticleQuadSystem::create(const std::string& filename)
 {
     UVAnimParticleQuadSystem *ret = new UVAnimParticleQuadSystem();
     if (ret && ret->initWithFile(filename)) {
