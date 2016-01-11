@@ -53,9 +53,9 @@ void UVAnimParticleQuadSystem::setTextureWithRectForAnimation(Texture2D *texture
 		m_pTexCoords = new Tex2F[UVCount];
 		Tex2F *texPtr = m_pTexCoords;
 		// Important. Texture in cocos2d are inverted, so the Y component should be inverted
-		for (int j = 0; j <= m_nItemsPerRow; ++j) {
+		for (int j = 0; j <= m_nItemsPerColumn; ++j) {
 			const float y = (rect.origin.y + m_nItemHeight*j)*inv_high;
-			for (int i = 0; i <= m_nItemsPerColumn; ++i) {
+			for (int i = 0; i <= m_nItemsPerRow; ++i) {
 				texPtr->u = (rect.origin.x + m_nItemWidth*i)*inv_wide;
 				texPtr->v = y;
 				++texPtr;
@@ -64,14 +64,19 @@ void UVAnimParticleQuadSystem::setTextureWithRectForAnimation(Texture2D *texture
 
 		m_pUVRects = new UVRect[m_nFrameCount];
 		UVRect *rectPtr = m_pUVRects;
-		for (int j = 0; j < m_nItemsPerRow; ++j) {
-			Tex2F *texPtr = m_pTexCoords + j * (m_nItemsPerColumn+1);
-			for (int i = 0; i < m_nItemsPerColumn; ++i) {
+		for (int j = 0; j < m_nItemsPerColumn; ++j) {
+			Tex2F *texPtr = m_pTexCoords + j * (m_nItemsPerRow+1);
+			for (int i = 0; i < m_nItemsPerRow; ++i) {
 				Tex2F *ptr = texPtr + i;
 				rectPtr->tl = ptr;
 				rectPtr->tr = ptr + 1;
-				rectPtr->bl = ptr + m_nItemsPerColumn + 1;
-				rectPtr->br = ptr + m_nItemsPerColumn + 2;
+				rectPtr->bl = ptr + m_nItemsPerRow + 1;
+				rectPtr->br = ptr + m_nItemsPerRow + 2;
+				//CCLOG("%f,%f;%f,%f;%f,%f;%f,%f;",  \
+					rectPtr->tl->u,rectPtr->tl->v, \
+					rectPtr->tr->u,rectPtr->tr->v, \
+					rectPtr->bl->u,rectPtr->bl->v, \
+					rectPtr->br->u,rectPtr->br->v);
 				++rectPtr;
 			}
 		}

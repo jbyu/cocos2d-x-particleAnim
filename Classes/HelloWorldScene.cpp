@@ -63,21 +63,21 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
     
-	UVAnimParticleQuadSystem *particle = UVAnimParticleQuadSystem::create("particle_texture.plist");
+	UVAnimParticleQuadSystem *particle = UVAnimParticleQuadSystem::create("gold.plist");
 	particle->setPosition(sprite->getPosition());
 	this->addChild(particle,1);
 
-	auto texture = Director::getInstance()->getTextureCache()->addImage("explosion.png");
+	auto texture = Director::getInstance()->getTextureCache()->addImage("gold2.png");
 	if (texture) {
 		const Size& s = texture->getContentSize();
-		particle->setTextureWithRectForAnimation(texture, Rect(0, 0, s.width, s.height), 64, 64, 25, true);
+		particle->setTextureWithRectForAnimation(texture, Rect(0, 0, s.width, s.height), 130, 130, 24, false);
 	}
-
+	/*
 	auto movie = VLCPlayer::create(Size(360,180));
 	movie->setPosition(sprite->getPosition());
 	movie->o_play("loop.mp4");
 	this->addChild(movie,0,123);
-
+	*/
     return true;
 }
 
@@ -88,7 +88,7 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 	MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
     return;
 #endif
-	this->getChildByTag(123)->removeFromParentAndCleanup(true);
+	//this->getChildByTag(123)->removeFromParentAndCleanup(true);
     Director::getInstance()->end();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
